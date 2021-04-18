@@ -1,0 +1,45 @@
+{{ $sectionID := replace (lower .section.name) " " "-"  }}
+{{ if .section.id }}
+{{ $sectionID = .section.id }}
+{{ end }}
+
+<div class="container-fluid anchor pb-5 news-section" id="{{ $sectionID }}">
+    {{ if not (.section.hideTitle) }}
+    <h1 class="text-center">{{ .section.name }}</h1>
+    {{ end }}
+
+    <div class="container d-flex-block">
+        <style>
+            #news-table {
+                margin-top: 32px;
+            }
+            #news-table td {
+                border: 1px solid #aaa;
+                padding: 0.5em;
+            }
+            #news-table tr:nth-child(odd) {
+                background-color: #fff;
+            }
+        </style>
+        <table id="news-table">
+            {{ range .news}}
+            <tr>
+                <td>
+                    {{ .date }}
+                </td>
+                    
+                <td>
+                {{ range .messages }}
+                    {{ if .lastMessage }} 
+                        {{ .lastMessage | markdownify }} 
+                    {{ else }}
+                        {{ .message | markdownify }}<br><br>
+                    {{ end }}
+                {{ end }}            
+                </td>
+
+            </tr>
+            {{ end }}
+        </table>
+    </div>
+</div>

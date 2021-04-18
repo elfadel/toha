@@ -1,0 +1,149 @@
+{{ $sectionID := replace (lower .section.name) " " "-"  }}
+{{ if .section.id }}
+  {{ $sectionID = .section.id }}
+{{ end }}
+
+{{ $author:= site.Data.author }}
+{{ if (index site.Data site.Language.Lang).author }}
+  {{ $author = (index site.Data site.Language.Lang).author }}
+{{ end }}
+
+<div class="container anchor p-lg-5 publications-section" id="{{ $sectionID }}">
+  <h1 class="text-center">{{ .section.name }}</h1>
+  <div class="publist">
+
+    <ul>
+      <h5>
+        <p>
+          <u>
+            <strong>2021</strong>
+          </u>
+        </p>
+      </h5>
+
+      {{ range .papers21 }}
+
+      <li style="margin-left: 40px">
+        <p>
+
+          {{if .firstAuthor}} {{ .firstAuthor }} {{ end }}
+          
+          {{ if .meAuthor }} 
+          <strong>
+            {{ .meAuthor }},  
+          </strong>
+          {{ end }}
+
+          {{ if .listAuthor }} {{ .listAuthor }} {{ end }}
+          
+            "<u>{{ .title }}</u>", 
+            <i>{{ .journal | markdownify }}</i>,
+            {{ if .vol }}, {{ .vol }}{{ end }} 
+            {{ if .doi }}
+              <a href="http://dx.doi.org/{{ .doi }}">
+                doi: {{ .doi }}
+              </a>
+            {{ end }}
+
+            {{ if .date }} {{ .date }}, {{ end }}            
+
+            {{ if .location }} {{ .location }}. {{ end }}
+
+        </p>
+      </li>
+
+      {{ end }}
+    </ul>
+
+    <ul>
+      <h5>
+        <p>
+          <u>
+            <strong>2019</strong>
+          </u>
+        </p>
+      </h5>
+
+      {{ range .papers19 }}
+
+      <li style="margin-left: 40px">
+        <p>
+
+          {{if .firstAuthor}} {{ .firstAuthor }} {{ end }}
+          
+          {{ if .meAuthor }} 
+          <strong>
+            {{ .meAuthor }},  
+          </strong>
+          {{ end }}
+
+          {{ if .listAuthor }} {{ .listAuthor }} {{ end }}
+
+          <!-- {{ range .authors }}
+            {{ .authorName }},
+          {{ end }} -->
+          
+            "<u>{{ .title }}</u>", 
+            <i>{{ .journal | markdownify }}</i>,
+            {{ if .vol }}, {{ .vol }}{{ end }} 
+            {{ if .doi }}
+              <a href="http://dx.doi.org/{{ .doi }}">
+                doi: {{ .doi }}
+              </a>
+            {{ end }}
+
+            {{ if .date }} {{ .date }}, {{ end }}            
+
+            {{ if .location }} {{ .location }}. {{ end }}
+
+        </p>
+      </li>
+
+      {{ end }}
+    </ul>
+
+    <ul>
+      <h5>
+        <p>
+          <u>
+            <strong>2018</strong>
+          </u>
+        </p>
+      </h5>
+
+      {{ range .papers18 }}
+
+      <li style="margin-left: 40px">
+        <p>
+
+          {{if .firstAuthor}} {{ .firstAuthor }} {{ end }}
+          
+          {{ if .meAuthor }} 
+          <strong>
+            {{ .meAuthor }},  
+          </strong>
+          {{ end }}
+
+          {{ if .listAuthor }} {{ .listAuthor }} {{ end }}
+
+            "<u>{{ .title }}</u>", 
+            <i>{{ .journal | markdownify }}</i>,
+            {{ if .vol }}, {{ .vol }}{{ end }} 
+            {{ if .doi }}
+              <a href="http://dx.doi.org/{{ .doi }}">
+                doi: {{ .doi }}
+              </a>
+            {{ end }}
+
+            {{ if .date }} {{ .date }}, {{ end }}            
+
+            {{ if .location }} {{ .location }}. {{ end }}
+
+        </p>
+      </li>
+
+      {{ end }}
+    </ul>
+
+  </div>
+</div>

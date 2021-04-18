@@ -1,0 +1,36 @@
+{{ $sectionID := replace (lower .section.name) " " "-"  }}
+{{ if .section.id }}
+  {{ $sectionID = .section.id }}
+{{ end }}
+
+{{ $author:= site.Data.author }}
+{{ if (index site.Data site.Language.Lang).author }}
+  {{ $author = (index site.Data site.Language.Lang).author }}
+{{ end }}
+
+<div class="container anchor p-lg-5 teaching-section" id="{{ $sectionID }}">
+  <h1 class="text-center">{{ .section.name }}</h1>
+  <div class="publist">
+
+    <p>
+      During my Ph.D., I was Teaching Assitant at <a href="https://www.insa-toulouse.fr/fr/index.html">INSA-Toulouse</a> and <a href="https://www.univ-tlse3.fr/">University Toulouse III-Paul Sabatier  (UPS)</a>. The main courses I supervised are:
+    </p>
+
+    <ul>
+
+      {{ range .courses }}
+
+      <p>
+        <li style="margin-left: 40px">
+          at <strong>{{ .university }}</strong>: 
+          <ul>
+            <li> {{ .level }} </li>
+            <li>{{ .modules }}</li>
+          </ul>
+        </li>
+      </p>
+      {{ end }}
+    </ul>
+
+  </div>
+</div>
